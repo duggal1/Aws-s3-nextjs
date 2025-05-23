@@ -363,7 +363,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 <div align="center">
 
-### **Built with ❤️ using Next.js 15.3 + TypeScript + AWS S3**
+### **Built with ❤️ by Duggal Ji and team**
 
 *Ready to upload? Let's make it happen! 🚀*
 
