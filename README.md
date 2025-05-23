@@ -45,7 +45,7 @@
 
 ### 1. **Clone & Install**
 ```bash
-git clone <repository-url>
+git clone https://github.com/duggal1/Aws-s3-nextjs.git
 cd aws-s3-testing-project
 npm install
 ```
