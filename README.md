@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# S3 Bucket Setup Instructions
 
-## Getting Started
+## Issue Fixed
+The `AccessControlListNotSupported` error has been resolved by removing the `ACL: 'public-read'` parameter from the upload command.
 
-First, run the development server:
+## Required S3 Bucket Configuration
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Since we removed ACLs, you need to configure your S3 bucket with a bucket policy to allow public read access to uploaded files.
+
+### 1. Bucket Policy (for public access)
+
+Go to your S3 bucket → Permissions → Bucket Policy and add this policy:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::YOUR-BUCKET-NAME/uploads/*"
+        }
+    ]
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Replace `YOUR-BUCKET-NAME` with your actual bucket name.**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Block Public Access Settings
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Make sure these settings are configured:
+- ✅ Block public access to buckets and objects granted through new access control lists (ACLs): **ON**
+- ✅ Block public access to buckets and objects granted through any access control lists (ACLs): **ON**  
+- ❌ Block public access to buckets and objects granted through new public bucket or access point policies: **OFF**
+- ❌ Block public access to buckets and objects granted through any public bucket or access point policies: **OFF**
 
-## Learn More
+### 3. Supported File Types
 
-To learn more about Next.js, take a look at the following resources:
+The API now supports:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Images:** jpg, jpeg, png, gif, webp, bmp, tiff, svg
+**Audio:** mp3, wav, ogg, aac, flac, m4a
+**Video:** mp4, mpeg, mov, avi, webm, mkv
+**Documents:** pdf
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Environment Variables
 
-## Deploy on Vercel
+Make sure your `.env.local` file has:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+AWS_ACCESS_KEY_ID=your_actual_access_key
+AWS_SECRET_ACCESS_KEY=your_actual_secret_key
+AWS_REGION=us-east-1
+S3_BUCKET_NAME=your-actual-bucket-name
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Alternative: Private Files with Signed URLs
+
+If you prefer to keep files private and generate signed URLs on demand, you can install the presigner package:
+
+```bash
+npm install @aws-sdk/s3-request-presigner
+```
+
+Then modify the upload route to generate signed URLs instead of public URLs.
+
+## Testing
+
+After applying the bucket policy, test the upload functionality. Files should upload successfully and be accessible via the returned URLs.
