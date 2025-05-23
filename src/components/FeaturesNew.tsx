@@ -84,7 +84,7 @@ export default function AwsFeatures() {
           </motion.p>
         </motion.div>
 
-        {/* Features Grid */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
@@ -97,19 +97,19 @@ export default function AwsFeatures() {
               className="group relative"
             >
               <div className="relative overflow-hidden rounded-2xl border border-zinc-800/50 bg-gradient-to-br from-zinc-900/50 via-black to-zinc-900/50 backdrop-blur-xl p-8 h-full transition-all duration-500 hover:border-zinc-700/50 hover:shadow-2xl hover:shadow-black/20">
-                {/* Gradient overlay */}
+              
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-5`} />
                 </div>
                 
-                {/* Icon */}
+    
                 <div className="relative z-10 mb-6">
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} p-4 shadow-lg`}>
                     <feature.icon className="w-full h-full text-white" />
                   </div>
                 </div>
                 
-                {/* Content */}
+
                 <div className="relative z-10 space-y-4">
                   <h3 className="text-xl font-bold text-white group-hover:text-white transition-colors">
                     {feature.title}
@@ -128,7 +128,7 @@ export default function AwsFeatures() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
+
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

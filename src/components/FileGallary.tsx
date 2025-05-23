@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @next/next/no-img-element */
+
 
 'use client';
 
-import { useState, useEffect, JSX } from 'react';
+import { useState, useEffect} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   IconTrash,
@@ -38,24 +39,7 @@ const FileGallery: React.FC<FileGalleryProps> = ({ refreshTrigger }) => {
   const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
   const [deleting, setDeleting] = useState<string>('');
 
-  const getFileIcon = (type: string): JSX.Element => {
-    const iconClass = "w-6 h-6";
-    if (type === 'image') return <IconPhoto className={iconClass} />;
-    if (type === 'video') return <IconVideo className={iconClass} />;
-    if (type === 'audio') return <IconMusic className={iconClass} />;
-    if (type === 'pdf') return <IconFileText className={iconClass} />;
-    return <IconFile className={iconClass} />;
-  };
 
-  const getFileTypeColor = (type: string): string => {
-    switch (type) {
-      case 'image': return 'text-green-400';
-      case 'video': return 'text-blue-400';
-      case 'audio': return 'text-yellow-400';
-      case 'pdf': return 'text-red-400';
-      default: return 'text-gray-400';
-    }
-  };
 
   const formatFileSize = (bytes: number): string => {
     if (bytes === 0) return '0 Bytes';
@@ -335,7 +319,7 @@ const FileGallery: React.FC<FileGalleryProps> = ({ refreshTrigger }) => {
                 </div>
               )}
 
-              {/* Overlay with actions */}
+              
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="flex gap-2">
                   <motion.button
@@ -416,7 +400,7 @@ const FileGallery: React.FC<FileGalleryProps> = ({ refreshTrigger }) => {
         ))}
       </div>
 
-      {/* Ultra-Modern Preview Modal */}
+
       <AnimatePresence>
         {selectedFile && (
           <motion.div
@@ -483,7 +467,7 @@ const FileGallery: React.FC<FileGalleryProps> = ({ refreshTrigger }) => {
                 </div>
               </div>
 
-              {/* Content */}
+
               <div className="p-6 max-h-[calc(90vh-120px)] overflow-auto">
                 {selectedFile.type === 'image' && (
                   <motion.div

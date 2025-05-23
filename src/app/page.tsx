@@ -109,7 +109,7 @@ const HomePage: React.FC = () => {
     });
     setRefreshTrigger(prev => prev + 1);
 
-    // Update stats
+
     setStats(prev => ({
       totalUploads: prev.totalUploads + 1,
       totalSize: formatFileSize(
@@ -117,8 +117,8 @@ const HomePage: React.FC = () => {
       )
     }));
 
-    // Auto-hide notification after 5 seconds
-    setTimeout(() => setNotification(null), 5000);
+
+    setTimeout(() => setNotification(null), 3000);
   };
 
   const handleUploadError = (error: string): void => {
@@ -127,8 +127,8 @@ const HomePage: React.FC = () => {
       message: error
     });
 
-    // Auto-hide notification after 7 seconds
-    setTimeout(() => setNotification(null), 7000);
+
+    setTimeout(() => setNotification(null), 5000);
   };
 
   const closeNotification = (): void => {
@@ -139,7 +139,7 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
    
       <div className="relative z-10">
-        {/* Ultra-Modern Header */}
+       
         <motion.header
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -169,7 +169,7 @@ const HomePage: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Ultra-Modern Stats */}
+
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -201,10 +201,10 @@ const HomePage: React.FC = () => {
           </div>
         </motion.header>
 
-        {/* Ultra-Modern Main Content */}
+      
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="space-y-12">
-            {/* Hero Features Banner */}
+         
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -238,7 +238,7 @@ const HomePage: React.FC = () => {
               ))}
             </motion.div>
 
-            {/* Ultra-Modern Upload Section */}
+          
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -274,7 +274,7 @@ const HomePage: React.FC = () => {
               </div>
             </motion.section>
 
-            {/* Ultra-Modern Gallery Section */}
+       
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -303,7 +303,7 @@ const HomePage: React.FC = () => {
           </div>
         </main>
 
-        {/* Ultra-Modern Footer */}
+
         <motion.footer
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

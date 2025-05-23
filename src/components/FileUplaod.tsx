@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 'use client';
 
-import { useState, useRef, DragEvent, ChangeEvent, JSX } from 'react';
+import { useState, useRef, DragEvent, ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  IconFile,
   IconPhoto,
   IconVideo,
   IconMusic,
@@ -40,22 +39,6 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess, onUploadError 
     'video/mp4', 'video/mpeg', 'video/quicktime', 'video/webm', 'video/avi', 'video/mov',
     'audio/mp3', 'audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/aac', 'audio/flac', 'audio/m4a'
   ];
-
-  const getFileIcon = (type: string): JSX.Element => {
-    if (type.startsWith('image/')) return <IconPhoto className="w-8 h-8" />;
-    if (type.startsWith('video/')) return <IconVideo className="w-8 h-8" />;
-    if (type.startsWith('audio/')) return <IconMusic className="w-8 h-8" />;
-    if (type === 'application/pdf') return <IconFileText className="w-8 h-8" />;
-    return <IconFile className="w-8 h-8" />;
-  };
-
-  const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  };
 
   const validateFile = (file: File): string | null => {
     if (!allowedTypes.includes(file.type)) {
@@ -180,10 +163,10 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess, onUploadError 
         onDrop={handleDrop}
         onClick={handleClick}
       >
-        {/* Animated background gradient */}
+
         <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 via-transparent to-fuchsia-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        {/* Sparkle effects */}
+
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(6)].map((_, i) => (
             <motion.div
